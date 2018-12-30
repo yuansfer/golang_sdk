@@ -1,0 +1,19 @@
+#Configuration of Custom System
+
+online_host:
+  - https://mapi.yuansfer.yunkeguan.com/appTransaction/v2
+  - https://mapi.yuansfer.com/appTransaction/v2
+online_payment_url: /securepay
+online_query_url: /securepay-reference-query
+online_refund_url: /securepayRefund
+
+instore_host:
+  - https://mapi.yuansfer.yunkeguan.com/app-instore/v2
+  - https://mapi.yuansfer.com/app-instore/v2
+instore_add_url: /add
+instore_pay_url: /pay
+instore_create_qrcode: /create-trans-qrcode
+instore_query_url: TODO
+instore_refund_url: /refund
+instore_reverse_url: /v2/reverse
+
