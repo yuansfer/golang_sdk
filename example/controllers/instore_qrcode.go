@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	yuan "github.com/yuansfer/golang_sdk/yuansfer"
+	yuan "github.com/yuansfer/golang_sdk"
 )
 
 type InstoreQrcodeController struct {

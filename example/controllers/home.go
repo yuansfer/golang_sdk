@@ -5,7 +5,7 @@ import (
 	"html/template"
 	"time"
 
-	yuan "github.com/yuansfer/golang_sdk/yuansfer"
+	yuan "github.com/yuansfer/golang_sdk"
 )
 
 const (
