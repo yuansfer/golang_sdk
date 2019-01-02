@@ -25,7 +25,7 @@ func struct2Map(obj Yuansfer) map[string]string {
 	v := reflect.ValueOf(obj)
 	var data = make(map[string]string)
 	for i := 0; i < t.NumField(); i++ {
-		data[t.Field(i).Name] = v.Field(i).String()
+		data[t.Field(i).Tag.Get("json")] = v.Field(i).String()
 	}
 	return data
 }
@@ -45,7 +45,7 @@ func generateValues(req Yuansfer, tocken string) url.Values {
 
 	for key, value := range data {
 		if value != "" {
-			values.Add(lowerFisrtCharacter(key), value)
+			values.Add(key, value)
 		}
 	}
 
@@ -62,18 +62,10 @@ func map2Str(m map[string]string) string {
 	sort.Strings(keys)
 	dec := ""
 	for _, key := range keys {
-		dec += lowerFisrtCharacter(key) + "=" + m[key] + "&"
+		dec += key + "=" + m[key] + "&"
 	}
 
 	return dec
-}
-
-func lowerFisrtCharacter(src string) string {
-	vv := []rune(src)
-	if 64 < vv[0] && 91 > vv[0] {
-		vv[0] += 32
-	}
-	return string(vv)
 }
 
 func postToYuansfer(addr string, values url.Values) (string, error) {
