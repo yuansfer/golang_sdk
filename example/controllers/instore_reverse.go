@@ -44,7 +44,7 @@ func (this *InstoreReverseController) Post() {
 	if err != nil {
 		log.Println("Unmarshal Err:%v", err)
 	}
-	log.Println("resp:%v", qr)
+	log.Println("resp:", qr)
 	resp := qr.Result
 	this.Data["IsInquire"] = true
 	this.TplName = "inquire.tpl"

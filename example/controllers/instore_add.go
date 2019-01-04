@@ -45,7 +45,7 @@ func (this *InstoreAddController) Post() {
 	if err != nil {
 		log.Println("Unmarshal Err:%v", err)
 	}
-	log.Println("resp:%v", qr)
+	log.Println("resp:", qr)
 	resp := qr.Transaction
 	this.Data["IsInstoreAdd"] = true
 	this.TplName = "instore-add-ret.tpl"
