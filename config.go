@@ -10,17 +10,17 @@ import (
 )
 
 type yuansferApi struct {
-	OnlineHost          []string `yaml:"online_host"`
+	Host                []string `yaml:"yuansfer_host"`
 	OnlinePayment       string   `yaml:"online_payment_url"`
 	OnlineQuery         string   `yaml:"online_query_url"`
 	OnlineRefund        string   `yaml:"online_refund_url"`
-	InstoreHost         []string `yaml:"instore_host"`
 	InstoreAdd          string   `yaml:"instore_add_url"`
 	InstorePay          string   `yaml:"instore_pay_url"`
 	InstoreCreateQrcode string   `yaml:"instore_create_qrcode"`
 	InstoreQuery        string   `yaml:"instore_query_url"`
 	InstoreRefund       string   `yaml:"instore_refund_url"`
 	InstoreReverse      string   `yaml:"instore_reverse_url"`
+	Micropay            string   `yaml:"micropay_url"`
 }
 
 const (
@@ -44,11 +44,9 @@ func init() {
 	}
 
 	if "product" == *env {
-		yuansferHost = YuansferApi.OnlineHost[1]
-		instoreHost = YuansferApi.InstoreHost[1]
+		yuansferHost = YuansferApi.Host[1]
 	} else {
-		yuansferHost = YuansferApi.OnlineHost[0]
-		instoreHost = YuansferApi.InstoreHost[0]
+		yuansferHost = YuansferApi.Host[0]
 	}
 
 }

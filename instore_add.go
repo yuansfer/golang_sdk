@@ -10,8 +10,8 @@ type InstoreAdd struct {
 
 func (s InstoreAdd) PostToYuansfer(token string) (string, error) {
 	values := generateValues(s, token)
-	securepayeUrl := instoreHost + YuansferApi.InstoreAdd
-	return postToYuansfer(securepayeUrl, values)
+	requestUrl := yuansferHost + YuansferApi.InstoreAdd
+	return postToYuansfer(requestUrl, values)
 }
 
 type AddResponse struct {

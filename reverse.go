@@ -1,15 +1,14 @@
 package yuansfer
 
 type Reverse struct {
-	MerchantNo string `json:"merchantNo"`
-	StoreNo    string `json:"storeNo"`
-	// StoreAdminNo  string `json:"storeAdminNo"`
+	MerchantNo    string `json:"merchantNo"`
+	StoreNo       string `json:"storeNo"`
 	TransactionNo string `json:"transactionNo"`
 }
 
 func (r Reverse) PostToYuansfer(token string) (string, error) {
 	values := generateValues(r, token)
-	reverseUrl := instoreHost + YuansferApi.InstoreReverse
+	reverseUrl := yuansferHost + YuansferApi.InstoreReverse
 	return postToYuansfer(reverseUrl, values)
 }
 

@@ -3,81 +3,60 @@ package controllers
 import (
 	"fmt"
 	"html/template"
+	"log"
 	"time"
 
 	yuan "github.com/yuansfer/golang_sdk"
 )
 
 const (
-	//securepay token
-	yuansferToken = "3b581909d6294e988887838865e0bb76"
-	//instore token
-	instoreToken = "59600f2a9ad644c6a9570233560cc94e"
+	miropayToken = "4dc2f2281d1f51fe137eafb914106524"
 )
 
-type HomeController struct {
+type MicropayController struct {
 	controller
 }
 
-func (this *HomeController) Get() {
-	this.Data["IsPay"] = true
-	this.TplName = "submit.tpl"
+func (this *MicropayController) Get() {
+	this.Data["IsMicroPay"] = true
+	this.TplName = "micropay.tpl"
 }
 
-func (this *HomeController) Post() {
+func (this *MicropayController) Post() {
 	merchantNo := this.Input().Get("merchantNo")
 	storeNo := this.Input().Get("storeNo")
 	amt := this.Input().Get("amt")
-	vendor := this.Input().Get("vendor")
 	rmbAmt := this.Input().Get("rmbAmt")
 	reference := this.Input().Get("reference")
 	description := this.Input().Get("description")
 	note := this.Input().Get("note")
-	terminal := this.Input().Get("terminal")
 	ipnUrl := this.Input().Get("ipnUrl")
-	callbackUrl := this.Input().Get("callbackUrl")
 	token := this.Input().Get("token")
+	openid := this.Input().Get("openid")
 
-	if "" == terminal {
-		terminal = "ONLINE"
-	}
 	if "" == reference {
 		reference = fmt.Sprintf("seq_%d", time.Now().Unix())
 	}
 	if "" == token {
-		token = yuansferToken
+		token = miropayToken
 	}
-	req := &yuan.Securepay{
+	req := &yuan.Micropay{
 		MerchantNo:  merchantNo,
 		StoreNo:     storeNo,
 		Currency:    "USD",
 		Amount:      amt,
 		RmbAmount:   rmbAmt,
-		Vendor:      vendor,
+		Vendor:      "wechatpay",
 		Reference:   reference,
 		IpnUrl:      ipnUrl,
-		CallbackUrl: callbackUrl,
 		Description: description,
 		Note:        note,
-		Terminal:    terminal,
-		Timeout:     "15",
-	}
-
-	goods := this.Input().Get("goods")
-	quantity := this.Input().Get("quantity")
-	if quantity != "" && goods != "" {
-		goodsInfos := []yuan.GoodsInfomation{
-			yuan.GoodsInfomation{
-				GoodsName: goods,
-				Quantity:  quantity,
-			},
-		}
-		_ = req.Format(goodsInfos)
+		Openid:      openid,
 	}
 
 	resp, err := req.PostToYuansfer(token)
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		this.Ctx.WriteString("something wrong happened")
 	}
 	t := template.New("secury pay template")

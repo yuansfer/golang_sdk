@@ -12,8 +12,8 @@ type InstorePay struct {
 
 func (s InstorePay) PostToYuansfer(token string) (string, error) {
 	values := generateValues(s, token)
-	securepayeUrl := instoreHost + YuansferApi.InstorePay
-	return postToYuansfer(securepayeUrl, values)
+	requestUrl := yuansferHost + YuansferApi.InstorePay
+	return postToYuansfer(requestUrl, values)
 }
 
 type PayResponse struct {

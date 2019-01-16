@@ -14,15 +14,9 @@ type CreateQrcode struct {
 
 func (s CreateQrcode) PostToYuansfer(token string) (string, error) {
 	values := generateValues(s, token)
-	requestUrl := instoreHost + YuansferApi.InstoreCreateQrcode
+	requestUrl := yuansferHost + YuansferApi.InstoreCreateQrcode
 	return postToYuansfer(requestUrl, values)
 }
-
-// type AddResponse struct {
-// 	Result      AddRet `json:"ret_code"`
-// 	RetMsg      string `json:"ret_msg"`
-// 	Transaction AddRet `json:"transaction"`
-// }
 
 type QrcodeRet struct {
 	Reference     string `json:"reference"`

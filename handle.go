@@ -12,10 +12,7 @@ import (
 )
 
 var (
-	//online api
 	yuansferHost string
-	//instore api
-	instoreHost string
 
 	YuansferApi yuansferApi
 )
@@ -42,7 +39,7 @@ func generateValues(req Yuansfer, tocken string) url.Values {
 	data := struct2Map(req)
 	pre := map2Str(data) + md5Tocken(tocken)
 	values.Add("verifySign", md5Tocken(pre))
-
+	log.Println("verifySign:", md5Tocken(pre))
 	for key, value := range data {
 		if value != "" {
 			values.Add(key, value)
@@ -99,6 +96,7 @@ func values2Map(m url.Values) map[string]string {
 func VerifySignNotify(str string, tocken string) (m map[string]string, r bool) {
 	values, err := url.ParseQuery(str)
 	verifySign := values.Get("verifySign")
+
 	m = values2Map(values)
 	if err != nil {
 		log.Fatalf("parse error:%v", err)
@@ -106,7 +104,6 @@ func VerifySignNotify(str string, tocken string) (m map[string]string, r bool) {
 
 	pre := map2Str(m) + md5Tocken(tocken)
 	vs := md5Tocken(pre)
-
 	if vs == verifySign {
 		return m, true
 	}

@@ -14,6 +14,7 @@
                 <li {{if .IsInstorePay}}class="active" {{end}}><a href="/instore-pay" target="_blank">In-store Pay</a></li>
                 <li {{if .IsCreateQrcode}}class="active" {{end}}><a href="/instore-qrcode">In-store Qrcode</a></li>
                 <li {{if .IsReverse}}class="active" {{end}}><a href="/instore-reverse">In-store Reverse</a></li>
+                <li {{if .IsMicroPay}}class="active" {{end}}><a href="/micropay">micropay</a></li>
             </ul>
         </div>
         <!-- <div class="pull-right">
