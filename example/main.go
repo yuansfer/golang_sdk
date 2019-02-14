@@ -1,6 +1,8 @@
 package main
 
 import (
+	_ "net/http/pprof"
+
 	"github.com/astaxie/beego"
 	"github.com/yuansfer/golang_sdk/example/controllers"
 )
@@ -9,9 +11,9 @@ func main() {
 	beego.BConfig.Listen.EnableHTTPS = true
 	beego.BConfig.Listen.Graceful = true
 
-	beego.BConfig.Listen.HTTPSPort = 443
-	beego.BConfig.Listen.HTTPSCertFile = "./server.pem"
-	beego.BConfig.Listen.HTTPSKeyFile = "./server.key"
+	// beego.BConfig.Listen.HTTPSPort = 443
+	// beego.BConfig.Listen.HTTPSCertFile = "./server.pem"
+	// beego.BConfig.Listen.HTTPSKeyFile = "./server.key"
 	//
 	// 注册 beego 路由
 	beego.Router("/", &controllers.HomeController{})

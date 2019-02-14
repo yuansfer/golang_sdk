@@ -80,6 +80,7 @@
                             <select name="terminal">
                                 <option value="ONLINE">ONLINE</option>
                                 <option value="WAP">WAP</option>
+                                <option value="APP">APP</option>
                             </select>
                         </td>
                     </tr>
