@@ -28,18 +28,20 @@ const (
 )
 
 func init() {
+	var configFile string
 
-	env := flag.String("env", "dev", "enviroment dev or product")
+	env := flag.String("env", "dev", "enviroment dev or product ")
+	configFile = *flag.String("conf", CONFIG_FILE, "config file name ")
 	flag.Parse()
 
-	data, err := ioutil.ReadFile(CONFIG_FILE)
+	data, err := ioutil.ReadFile(configFile)
 	if err != nil {
-		log.Fatalf("read config file %s error:%v", CONFIG_FILE, err)
+		log.Fatalf("read config file %s error:%v", configFile, err)
 		os.Exit(21)
 	}
 	err = yaml.Unmarshal([]byte(data), &YuansferApi)
 	if err != nil {
-		log.Fatalf("unmarshal config file %s error:%v", CONFIG_FILE, err)
+		log.Fatalf("unmarshal config file %s error:%v", configFile, err)
 		os.Exit(22)
 	}
 
