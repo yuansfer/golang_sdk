@@ -9,7 +9,7 @@
             <ul class="nav navbar-nav">
                 <li {{if .IsPay}}class="active" {{end}}><a href="/">Online Pay</a></li>
                 <li {{if .IsInquire}}class="active" {{end}}><a href="/inquire">Online Query</a></li>
-                <li {{if .IsRefund}}class="active" {{end}}><a href="/">Online Refund</a></li>
+                <li {{if .IsRefund}}class="active" {{end}}><a href="/refund">Refund</a></li>
                 <li {{if .IsInstoreAdd}}class="active" {{end}}><a href="/instore-add">In-store Add</a></li>
                 <li {{if .IsInstorePay}}class="active" {{end}}><a href="/instore-pay" target="_blank">In-store Pay</a></li>
                 <li {{if .IsCreateQrcode}}class="active" {{end}}><a href="/instore-qrcode">In-store Qrcode</a></li>

@@ -1,8 +1,6 @@
 package main
 
 import (
-	_ "net/http/pprof"
-
 	"github.com/astaxie/beego"
 	"github.com/yuansfer/golang_sdk/example/controllers"
 )
@@ -30,6 +28,7 @@ func main() {
 	beego.Router("/instore-qrcode", &controllers.InstoreQrcodeController{})
 	beego.Router("/instore-reverse", &controllers.InstoreReverseController{})
 	beego.Router("/micropay", &controllers.MicropayController{})
+	beego.Router("/refund", &controllers.RefundController{})
 	// 启动 beego
 	beego.Run()
 }
