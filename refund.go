@@ -19,7 +19,7 @@ type Refund struct {
 
 func (r Refund) PostToYuansfer(token string) (string, error) {
 
-	r.Password = md5Tocken(PASSWORD_PRE + r.Password)
+	r.Password = md5Token(PASSWORD_PRE + r.Password)
 
 	values := generateValues(r, token)
 	refundUrl := yuansferHost + YuansferApi.OnlineRefund

@@ -27,19 +27,19 @@ func struct2Map(obj Yuansfer) map[string]string {
 	return data
 }
 
-func md5Tocken(data string) string {
+func md5Token(data string) string {
 	md5 := md5.New()
 	md5.Write([]byte(data))
 	md5Data := md5.Sum([]byte(""))
 	return hex.EncodeToString(md5Data)
 }
 
-func generateValues(req Yuansfer, tocken string) url.Values {
+func generateValues(req Yuansfer, token string) url.Values {
 	values := url.Values{}
 	data := struct2Map(req)
-	pre := map2Str(data) + md5Tocken(tocken)
-	values.Add("verifySign", md5Tocken(pre))
-	log.Println("verifySign:", md5Tocken(pre))
+	pre := map2Str(data) + md5Token(token)
+	values.Add("verifySign", md5Token(pre))
+	log.Println("verifySign:", md5Token(pre))
 	for key, value := range data {
 		if value != "" {
 			values.Add(key, value)
@@ -93,7 +93,7 @@ func values2Map(m url.Values) map[string]string {
 	return r
 }
 
-func VerifySignNotify(str string, tocken string) (m map[string]string, r bool) {
+func VerifySignNotify(str string, token string) (m map[string]string, r bool) {
 	values, err := url.ParseQuery(str)
 	verifySign := values.Get("verifySign")
 
@@ -102,8 +102,8 @@ func VerifySignNotify(str string, tocken string) (m map[string]string, r bool) {
 		log.Fatalf("parse error:%v", err)
 	}
 
-	pre := map2Str(m) + md5Tocken(tocken)
-	vs := md5Tocken(pre)
+	pre := map2Str(m) + md5Token(token)
+	vs := md5Token(pre)
 	if vs == verifySign {
 		return m, true
 	}
