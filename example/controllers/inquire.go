@@ -53,6 +53,7 @@ func (this *InquireController) Post() {
 	this.checkData("Amount", resp.Amount)
 	this.checkData("Status", resp.Status)
 	this.checkData("RefundInfo", resp.RefundInfo)
+	this.checkData("Currency", resp.Currency)
 
 	return
 }

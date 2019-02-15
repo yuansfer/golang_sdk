@@ -8,7 +8,7 @@
         <form class="form-horizontal" method="POST" action="/">
             <div class="form-group">
                 <label class="col-lg-4 control-label">金额：</label>
-                <label class="col-lg-4">{{.Amount}}</label>
+                <label class="col-lg-4">{{.Amount}} {{.Currency}}</label>
             </div>
             <div class="form-group">
                 <label class="col-lg-4 control-label">交易结果：</label>
@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-group">
                             <label class="col-lg-4 control-label">退款金额：</label>
-                            <label class="col-lg-4">{{.RefundAmount}}</label>
+                            <label class="col-lg-4">{{.RefundAmount}} {{$.Currency}}</label>
                         </div>
                     {{end}}
                 </tbody>

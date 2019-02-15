@@ -34,6 +34,7 @@ type Ret struct {
 	Amount     string       `json:"amount"`
 	Status     string       `json:"status"`
 	RefundInfo []refundInfo `json:"refundInfo"`
+	Currency   string       `json:"currency"`
 }
 
 type refundInfo struct {
