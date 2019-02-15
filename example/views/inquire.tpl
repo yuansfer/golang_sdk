@@ -23,9 +23,22 @@
                 <label class="col-lg-4">{{.YuansferId}}</label>
             </div>
             <div class="form-group">
-                <label class="col-lg-4 control-label">退款金额：</label>
-                <label class="col-lg-4">{{.RefundAmount}}</label>
+                <label class="col-lg-4 control-label">------退款信息------</label>
             </div>
+             <table border="10" cellpadding="0" cellspacing="0" style="width:100%;margin:15px 0px;">
+                <tbody>
+                    {{range .RefundInfo}}
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">退款ID：</label>
+                            <label class="col-lg-4">{{.RefundYuansferId}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">退款金额：</label>
+                            <label class="col-lg-4">{{.RefundAmount}}</label>
+                        </div>
+                    {{end}}
+                </tbody>
+            </table>
             <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
                     <button class="btn btn-default" onclick="return backToHome();">返回</button>

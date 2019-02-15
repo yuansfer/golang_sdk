@@ -29,9 +29,14 @@ type QryResponse struct {
 }
 
 type Ret struct {
-	Reference    string `json:"reference"`
-	YuansferId   string `json:"yuansferId"`
-	Amount       string `json:"amount"`
-	Status       string `json:"status"`
-	RefundAmount string `json:"refundAmount"`
+	Reference  string       `json:"reference"`
+	YuansferId string       `json:"yuansferId"`
+	Amount     string       `json:"amount"`
+	Status     string       `json:"status"`
+	RefundInfo []refundInfo `json:"refundInfo"`
+}
+
+type refundInfo struct {
+	RefundYuansferId string `json:"refundYuansferId"`
+	RefundAmount     string `json:"refundAmount"`
 }

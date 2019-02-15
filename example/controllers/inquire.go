@@ -52,7 +52,7 @@ func (this *InquireController) Post() {
 	this.checkData("YuansferId", resp.YuansferId)
 	this.checkData("Amount", resp.Amount)
 	this.checkData("Status", resp.Status)
-	this.checkData("RefundAmount", resp.RefundAmount)
+	this.checkData("RefundInfo", resp.RefundInfo)
 
 	return
 }
