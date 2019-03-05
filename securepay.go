@@ -29,8 +29,8 @@ type GoodsInfomation struct {
 	Quantity  string `json:"quantity"`
 }
 
-func (s Securepay) PostToYuansfer(token string) (string, error) {
-	values := generateValues(s, token)
+func (s Securepay) PostToYuansfer() (string, error) {
+	values := generateValues(s, YuansferApi.Token.SecurepayToken)
 	securepayeUrl := yuansferHost + YuansferApi.OnlinePayment
 	return postToYuansfer(securepayeUrl, values)
 }

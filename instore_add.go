@@ -8,8 +8,8 @@ type InstoreAdd struct {
 	StoreAdminNo string `json:"storeAdminNo"`
 }
 
-func (s InstoreAdd) PostToYuansfer(token string) (string, error) {
-	values := generateValues(s, token)
+func (s InstoreAdd) PostToYuansfer() (string, error) {
+	values := generateValues(s, YuansferApi.Token.InstoreToken)
 	requestUrl := yuansferHost + YuansferApi.InstoreAdd
 	return postToYuansfer(requestUrl, values)
 }

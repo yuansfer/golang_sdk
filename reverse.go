@@ -6,8 +6,8 @@ type Reverse struct {
 	TransactionNo string `json:"transactionNo"`
 }
 
-func (r Reverse) PostToYuansfer(token string) (string, error) {
-	values := generateValues(r, token)
+func (r Reverse) PostToYuansfer() (string, error) {
+	values := generateValues(r, YuansferApi.Token.InstoreToken)
 	reverseUrl := yuansferHost + YuansferApi.InstoreReverse
 	return postToYuansfer(reverseUrl, values)
 }

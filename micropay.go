@@ -19,8 +19,8 @@ type Micropay struct {
 	Openid       string `json:"openid"`
 }
 
-func (s Micropay) PostToYuansfer(token string) (string, error) {
-	values := generateValues(s, token)
+func (s Micropay) PostToYuansfer() (string, error) {
+	values := generateValues(s, YuansferApi.Token.MicropayToken)
 	requestUrl := yuansferHost + YuansferApi.Micropay
 	return postToYuansfer(requestUrl, values)
 }

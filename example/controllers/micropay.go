@@ -9,12 +9,8 @@ import (
 	yuan "github.com/yuansfer/golang_sdk"
 )
 
-const (
-	miropayToken = "4dc2f2281d1f51fe137eafb914106524"
-)
-
 type MicropayController struct {
-	controller
+	Controller
 }
 
 func (this *MicropayController) Get() {
@@ -31,14 +27,10 @@ func (this *MicropayController) Post() {
 	description := this.Input().Get("description")
 	note := this.Input().Get("note")
 	ipnUrl := this.Input().Get("ipnUrl")
-	token := this.Input().Get("token")
 	openid := this.Input().Get("openid")
 
 	if "" == reference {
 		reference = fmt.Sprintf("seq_%d", time.Now().Unix())
-	}
-	if "" == token {
-		token = miropayToken
 	}
 	req := &yuan.Micropay{
 		MerchantNo:  merchantNo,
@@ -54,12 +46,12 @@ func (this *MicropayController) Post() {
 		Openid:      openid,
 	}
 
-	resp, err := req.PostToYuansfer(token)
+	resp, err := req.PostToYuansfer()
 	if err != nil {
 		log.Println(err)
 		this.Ctx.WriteString("something wrong happened")
 	}
-	t := template.New("secury pay template")
+	t := template.New("secure pay template")
 	t, _ = t.Parse(resp)
 	_ = t.Execute(this.Ctx.ResponseWriter, resp)
 

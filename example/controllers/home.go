@@ -8,15 +8,8 @@ import (
 	yuan "github.com/yuansfer/golang_sdk"
 )
 
-const (
-	//securepay token
-	yuansferToken = "3b581909d6294e988887838865e0bb76"
-	//instore token
-	instoreToken = "59600f2a9ad644c6a9570233560cc94e"
-)
-
 type HomeController struct {
-	controller
+	Controller
 }
 
 func (this *HomeController) Get() {
@@ -36,7 +29,6 @@ func (this *HomeController) Post() {
 	terminal := this.Input().Get("terminal")
 	ipnUrl := this.Input().Get("ipnUrl")
 	callbackUrl := this.Input().Get("callbackUrl")
-	token := this.Input().Get("token")
 
 	if "" == terminal {
 		terminal = "ONLINE"
@@ -44,9 +36,7 @@ func (this *HomeController) Post() {
 	if "" == reference {
 		reference = fmt.Sprintf("seq_%d", time.Now().Unix())
 	}
-	if "" == token {
-		token = yuansferToken
-	}
+
 	req := &yuan.Securepay{
 		MerchantNo:  merchantNo,
 		StoreNo:     storeNo,
@@ -75,12 +65,12 @@ func (this *HomeController) Post() {
 		_ = req.Format(goodsInfos)
 	}
 
-	resp, err := req.PostToYuansfer(token)
+	resp, err := req.PostToYuansfer()
 	if err != nil {
 		fmt.Println(err)
 		this.Ctx.WriteString("something wrong happened")
 	}
-	t := template.New("secury pay template")
+	t := template.New("secure pay template")
 	t, _ = t.Parse(resp)
 	_ = t.Execute(this.Ctx.ResponseWriter, resp)
 

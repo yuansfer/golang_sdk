@@ -1,7 +1,9 @@
 #Configuration of Custom System
 
 yuansfer_host:
+  # sandbox host url
   - https://mapi.yuansfer.yunkeguan.com
+  # product host url
   - https://mapi.yuansfer.com
 online_payment_url: /appTransaction/v2/securepay
 online_query_url: /appTransaction/v2/securepay-reference-query
@@ -13,4 +15,7 @@ instore_query_url: TODO
 instore_refund_url: /app-instore/v2/refund
 instore_reverse_url: /app-instore/v2/v2/reverse
 micropay_url: /micropay/v2/prepay
-
+token:
+  online_token: ONLINE_TOKEN
+  instore_token: INSTORE_TOKEN
+  micropay_token: MICROPAY_TOKEN

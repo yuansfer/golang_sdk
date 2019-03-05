@@ -17,11 +17,11 @@ type Refund struct {
 	Version          string `json:"version"`
 }
 
-func (r Refund) PostToYuansfer(token string) (string, error) {
+func (r Refund) PostToYuansfer() (string, error) {
 
 	r.Password = md5Token(PASSWORD_PRE + r.Password)
 
-	values := generateValues(r, token)
+	values := generateValues(r, YuansferApi.Token.SecurepayToken)
 	refundUrl := yuansferHost + YuansferApi.OnlineRefund
 	return postToYuansfer(refundUrl, values)
 }

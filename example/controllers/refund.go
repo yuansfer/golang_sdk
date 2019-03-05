@@ -9,7 +9,7 @@ import (
 )
 
 type RefundController struct {
-	controller
+	Controller
 }
 
 func (this *RefundController) Get() {
@@ -22,15 +22,11 @@ func (this *RefundController) Post() {
 	merchantNo := this.Input().Get("merchantNo")
 	storeNo := this.Input().Get("storeNo")
 	reference := this.Input().Get("reference")
-	token := this.Input().Get("token")
 	password := this.Input().Get("password")
 	amt := this.Input().Get("amt")
 	rmbAmt := this.Input().Get("rmbAmt")
 	managerAccountNo := this.Input().Get("managerAccountNo")
 
-	if "" == token {
-		token = yuansferToken
-	}
 	req := yuan.Refund{
 		MerchantNo:       merchantNo,
 		StoreNo:          storeNo,
@@ -41,7 +37,7 @@ func (this *RefundController) Post() {
 		ManagerAccountNo: managerAccountNo,
 	}
 
-	ret, err := req.PostToYuansfer(token)
+	ret, err := req.PostToYuansfer()
 	if err != nil {
 		log.Println(err)
 		this.Ctx.WriteString("something wrong happened in refund")

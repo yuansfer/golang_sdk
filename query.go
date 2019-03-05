@@ -17,8 +17,8 @@ type Query struct {
 	Version     string `json:"version"`
 }
 
-func (q Query) PostToYuansfer(token string) (string, error) {
-	values := generateValues(q, token)
+func (q Query) PostToYuansfer() (string, error) {
+	values := generateValues(q, YuansferApi.Token.SecurepayToken)
 	queryUrl := yuansferHost + YuansferApi.OnlineQuery
 	return postToYuansfer(queryUrl, values)
 }

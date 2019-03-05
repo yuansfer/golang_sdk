@@ -10,17 +10,24 @@ import (
 )
 
 type yuansferApi struct {
-	Host                []string `yaml:"yuansfer_host"`
-	OnlinePayment       string   `yaml:"online_payment_url"`
-	OnlineQuery         string   `yaml:"online_query_url"`
-	OnlineRefund        string   `yaml:"online_refund_url"`
-	InstoreAdd          string   `yaml:"instore_add_url"`
-	InstorePay          string   `yaml:"instore_pay_url"`
-	InstoreCreateQrcode string   `yaml:"instore_create_qrcode"`
-	InstoreQuery        string   `yaml:"instore_query_url"`
-	InstoreRefund       string   `yaml:"instore_refund_url"`
-	InstoreReverse      string   `yaml:"instore_reverse_url"`
-	Micropay            string   `yaml:"micropay_url"`
+	Host                []string      `yaml:"yuansfer_host"`
+	OnlinePayment       string        `yaml:"online_payment_url"`
+	OnlineQuery         string        `yaml:"online_query_url"`
+	OnlineRefund        string        `yaml:"online_refund_url"`
+	InstoreAdd          string        `yaml:"instore_add_url"`
+	InstorePay          string        `yaml:"instore_pay_url"`
+	InstoreCreateQrcode string        `yaml:"instore_create_qrcode"`
+	InstoreQuery        string        `yaml:"instore_query_url"`
+	InstoreRefund       string        `yaml:"instore_refund_url"`
+	InstoreReverse      string        `yaml:"instore_reverse_url"`
+	Micropay            string        `yaml:"micropay_url"`
+	Token               yuansferToken `yaml:"token"`
+}
+
+type yuansferToken struct {
+	SecurepayToken string `yaml:"online_token"`
+	InstoreToken   string `yaml:"instore_token"`
+	MicropayToken  string `yaml:"micropay_token"`
 }
 
 const (
@@ -50,5 +57,4 @@ func init() {
 	} else {
 		yuansferHost = YuansferApi.Host[0]
 	}
-
 }

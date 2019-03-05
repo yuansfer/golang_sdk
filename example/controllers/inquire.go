@@ -8,7 +8,7 @@ import (
 )
 
 type InquireController struct {
-	controller
+	Controller
 }
 
 func (this *InquireController) Get() {
@@ -21,18 +21,14 @@ func (this *InquireController) Post() {
 	merchantNo := this.Input().Get("merchantNo")
 	storeNo := this.Input().Get("storeNo")
 	reference := this.Input().Get("reference")
-	token := this.Input().Get("token")
 
-	if "" == token {
-		token = yuansferToken
-	}
 	req := yuan.Query{
 		MerchantNo: merchantNo,
 		StoreNo:    storeNo,
 		Reference:  reference,
 	}
 
-	ret, err := req.PostToYuansfer(token)
+	ret, err := req.PostToYuansfer()
 	if err != nil {
 		log.Println(err)
 	}

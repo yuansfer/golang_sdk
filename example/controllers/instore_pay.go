@@ -8,7 +8,7 @@ import (
 )
 
 type InstorePayController struct {
-	controller
+	Controller
 }
 
 func (this *InstorePayController) Get() {
@@ -21,14 +21,9 @@ func (this *InstorePayController) Post() {
 	merchantNo := this.Input().Get("merchantNo")
 	storeNo := this.Input().Get("storeNo")
 
-	token := this.Input().Get("token")
 	transactionNo := this.Input().Get("transactionNo")
 	paymentBarcode := this.Input().Get("paymentBarcode")
 	vendor := this.Input().Get("vendor")
-
-	if "" == token {
-		token = instoreToken
-	}
 
 	req := yuan.InstorePay{
 		MerchantNo:     merchantNo,
@@ -38,7 +33,7 @@ func (this *InstorePayController) Post() {
 		Vendor:         vendor,
 	}
 
-	ret, err := req.PostToYuansfer(token)
+	ret, err := req.PostToYuansfer()
 	if err != nil {
 		log.Println(err)
 	}

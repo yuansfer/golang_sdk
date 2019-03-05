@@ -12,8 +12,8 @@ type CreateQrcode struct {
 	IpnUrl       string `json:"ipnUrl"`
 }
 
-func (s CreateQrcode) PostToYuansfer(token string) (string, error) {
-	values := generateValues(s, token)
+func (s CreateQrcode) PostToYuansfer() (string, error) {
+	values := generateValues(s, YuansferApi.Token.InstoreToken)
 	requestUrl := yuansferHost + YuansferApi.InstoreCreateQrcode
 	return postToYuansfer(requestUrl, values)
 }

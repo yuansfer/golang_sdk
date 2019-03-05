@@ -10,8 +10,8 @@ type InstorePay struct {
 	Vendor         string `json:"vendor"`
 }
 
-func (s InstorePay) PostToYuansfer(token string) (string, error) {
-	values := generateValues(s, token)
+func (s InstorePay) PostToYuansfer() (string, error) {
+	values := generateValues(s, YuansferApi.Token.InstoreToken)
 	requestUrl := yuansferHost + YuansferApi.InstorePay
 	return postToYuansfer(requestUrl, values)
 }

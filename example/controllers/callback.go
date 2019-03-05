@@ -5,7 +5,7 @@ import (
 )
 
 type CallbackController struct {
-	controller
+	Controller
 }
 
 func (this *CallbackController) Get() {

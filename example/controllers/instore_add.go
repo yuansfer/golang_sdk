@@ -8,7 +8,7 @@ import (
 )
 
 type InstoreAddController struct {
-	controller
+	Controller
 }
 
 func (this *InstoreAddController) Get() {
@@ -22,11 +22,6 @@ func (this *InstoreAddController) Post() {
 	storeNo := this.Input().Get("storeNo")
 
 	amt := this.Input().Get("amt")
-	token := this.Input().Get("token")
-
-	if "" == token {
-		token = instoreToken
-	}
 
 	req := yuan.InstoreAdd{
 		MerchantNo: merchantNo,
@@ -34,7 +29,7 @@ func (this *InstoreAddController) Post() {
 		Amount:     amt,
 	}
 
-	ret, err := req.PostToYuansfer(token)
+	ret, err := req.PostToYuansfer()
 	if err != nil {
 		log.Println(err)
 	}

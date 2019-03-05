@@ -10,7 +10,7 @@ import (
 )
 
 type InstoreQrcodeController struct {
-	controller
+	Controller
 }
 
 func (this *InstoreQrcodeController) Get() {
@@ -24,11 +24,6 @@ func (this *InstoreQrcodeController) Post() {
 	storeNo := this.Input().Get("storeNo")
 
 	amt := this.Input().Get("amt")
-	token := this.Input().Get("token")
-
-	if "" == token {
-		token = instoreToken
-	}
 
 	vendor := this.Input().Get("vendor")
 	reference := this.Input().Get("reference")
@@ -47,7 +42,7 @@ func (this *InstoreQrcodeController) Post() {
 		Currency:   "USD",
 	}
 
-	ret, err := req.PostToYuansfer(token)
+	ret, err := req.PostToYuansfer()
 	if err != nil {
 		log.Println(err)
 	}

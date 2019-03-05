@@ -8,7 +8,7 @@ import (
 )
 
 type InstoreReverseController struct {
-	controller
+	Controller
 }
 
 func (this *InstoreReverseController) Get() {
@@ -22,18 +22,14 @@ func (this *InstoreReverseController) Post() {
 	storeNo := this.Input().Get("storeNo")
 
 	transactionNo := this.Input().Get("transactionNo")
-	token := this.Input().Get("token")
 
-	if "" == token {
-		token = instoreToken
-	}
 	req := yuan.Reverse{
 		MerchantNo:    merchantNo,
 		StoreNo:       storeNo,
 		TransactionNo: transactionNo,
 	}
 
-	ret, err := req.PostToYuansfer(token)
+	ret, err := req.PostToYuansfer()
 	if err != nil {
 		log.Println(err)
 	}

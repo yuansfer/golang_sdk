@@ -4,11 +4,11 @@ import (
 	"github.com/astaxie/beego"
 )
 
-type controller struct {
+type Controller struct {
 	beego.Controller
 }
 
-func (c *controller) checkData(key string, value interface{}) {
+func (c *Controller) checkData(key string, value interface{}) {
 	if c.Data[key] = value; c.Data[key] == "" {
 		c.Data[key] = "-"
 	}
