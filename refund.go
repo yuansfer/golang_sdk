@@ -1,9 +1,5 @@
 package yuansfer
 
-const (
-	PASSWORD_PRE = "@yuanex"
-)
-
 type Refund struct {
 	MerchantNo       string `json:"merchantNo"`
 	StoreNo          string `json:"storeNo"`
@@ -19,7 +15,7 @@ type Refund struct {
 
 func (r Refund) PostToYuansfer() (string, error) {
 
-	r.Password = md5Token(PASSWORD_PRE + r.Password)
+	r.Password = md5Token(YuansferApi.PwdPre + r.Password)
 
 	values := generateValues(r, YuansferApi.Token.SecurepayToken)
 	refundUrl := yuansferHost + YuansferApi.OnlineRefund

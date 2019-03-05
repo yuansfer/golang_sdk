@@ -16,6 +16,9 @@ instore_refund_url: /app-instore/v2/refund
 instore_reverse_url: /app-instore/v2/v2/reverse
 micropay_url: /micropay/v2/prepay
 token:
-  online_token: ONLINE_TOKEN
-  instore_token: INSTORE_TOKEN
-  micropay_token: MICROPAY_TOKEN
+  # please get token from support@yuansfer.com
+  online_token: 'ONLINE_TOKEN'
+  instore_token: 'INSTORE_TOKEN'
+  micropay_token: 'MICROPAY_TOKEN'
+  # please get value of Password Prefix at https://docs.yuansfer.com/en/#notice
+password_prefix: 'PASSWORD_PREFIX'

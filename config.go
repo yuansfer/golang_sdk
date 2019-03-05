@@ -22,6 +22,7 @@ type yuansferApi struct {
 	InstoreReverse      string        `yaml:"instore_reverse_url"`
 	Micropay            string        `yaml:"micropay_url"`
 	Token               yuansferToken `yaml:"token"`
+	PwdPre              string        `yaml:"password_prefix"`
 }
 
 type yuansferToken struct {
