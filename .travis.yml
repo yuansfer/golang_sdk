@@ -1,9 +1,9 @@
 language: go
 go:
-  - '1.9'
-  - 1.10.x
-  - 1.11.x
+  - 1.9
+  - 1.10
+  - 1.11
 install:
-  - echo "$GOPATH"
+  - go get gopkg.in/yaml.v2
 script:
   - go build github.com/yuansfer/golang_sdk

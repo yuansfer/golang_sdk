@@ -1,5 +1,6 @@
-# golang_sdk [![Build Status](https://travis-ci.org/uber/go-torch.svg?branch=master)](https://travis-ci.org/uber/go-torch) 
+# golang_sdk [![Build Status](https://travis-ci.org/yuansfer/golang_sdk.svg?branch=master)](https://travis-ci.org/yuansfer/golang_sdk) [![GoDoc](https://godoc.org/github.com/yuansfer/golang_sdk?status.svg)](https://godoc.org/github.com/yuansfer/golang_sdk)
 yuansfer SDK for golang language
+
 ## about
 Add the Configuration File named `yuansfer-api.yaml` into your project.
 ```
