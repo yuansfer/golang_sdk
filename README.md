@@ -16,7 +16,7 @@ instore_add_url: /app-instore/v2/add
 instore_pay_url: /app-instore/v2/pay
 instore_create_qrcode: /app-instore/v2/create-trans-qrcode
 instore_refund_url: /app-instore/v2/refund
-instore_reverse_url: /app-instore/v2/v2/reverse
+instore_reverse_url: /app-instore/v2/reverse
 micropay_url: /micropay/v2/prepay
 token:
   # please get Yuansfer Token from support@yuansfer.com
