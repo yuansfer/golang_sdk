@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/astaxie/beego"
-	"github.com/yuansfer/golang_sdk/example/controllers"
+	"github.com/yuansfer/golang_sdk/_example/controllers"
 )
 
 func main() {
