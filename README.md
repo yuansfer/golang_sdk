@@ -33,8 +33,5 @@ password_prefix: 'PASSWORD_PREFIX'
 Use the command-line flag `env` to select a Development or Production environment.
 
 ## contact us
-```
 mail: support@yuansfer.com
-API documention: 
-[https://docs.yuansfer.com/en/](https://docs.yuansfer.com/en/#notice)
-```
+API documention: [https://docs.yuansfer.com/en/](https://docs.yuansfer.com/en/)
