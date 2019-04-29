@@ -101,7 +101,7 @@ func VerifySignNotify(str string, token string) (m map[string]string, r bool) {
 
 	m = values2Map(values)
 	if err != nil {
-		log.Fatalf("parse error:%v", err)
+		log.Println("parse error:%v", err)
 	}
 
 	pre := map2Str(m) + md5Token(token)
