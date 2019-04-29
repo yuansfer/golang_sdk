@@ -40,7 +40,7 @@ func (s Securepay) PostToYuansfer() (string, error) {
 	return postToYuansfer(securepayeURL, values)
 }
 
-//Format to change GoodsInfo to string.
+//Format changes GoodsInfo to string.
 func (s *Securepay) Format(goodsInfos []GoodsInfomation) (err error) {
 	if nil == goodsInfos {
 		return

@@ -4,7 +4,6 @@ import (
 	"flag"
 	"io/ioutil"
 	"log"
-	"os"
 	"strings"
 
 	"github.com/BurntSushi/toml"
@@ -49,29 +48,25 @@ func init() {
 
 	flag.Parse()
 
-	fileType := strings.Split(configFile, ".")[2]
+	s := strings.Split(configFile, ".")
+	fileType := s[len(s)-1]
 
 	switch fileType {
 	case "toml":
 		if _, err := toml.DecodeFile(configFile, &YuansferAPI); err != nil {
-			log.Fatal(err)
-			os.Exit(23)
+			log.Fatalf("Decode toml err:%s", err.Error())
 		}
 	case "yml", "yaml":
 		data, err := ioutil.ReadFile(configFile)
 		if err != nil {
 			log.Fatalf("read config file %s error:%s", configFile, err.Error())
-			os.Exit(21)
 		}
 		err = yaml.Unmarshal([]byte(data), &YuansferAPI)
 		if err != nil {
 			log.Fatalf("Unmarshal config file %s error:%s", configFile, err.Error())
-			os.Exit(22)
 		}
 	default:
 		log.Fatal("Unknown configuration file type.")
-		os.Exit(31)
-
 	}
 
 	if "product" == env {
