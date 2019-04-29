@@ -27,8 +27,8 @@ func (this *HomeController) Post() {
 	description := this.Input().Get("description")
 	note := this.Input().Get("note")
 	terminal := this.Input().Get("terminal")
-	ipnUrl := this.Input().Get("ipnUrl")
-	callbackUrl := this.Input().Get("callbackUrl")
+	ipnURL := this.Input().Get("ipnUrl")
+	callbackURL := this.Input().Get("callbackUrl")
 
 	if "" == terminal {
 		terminal = "ONLINE"
@@ -45,8 +45,8 @@ func (this *HomeController) Post() {
 		RmbAmount:   rmbAmt,
 		Vendor:      vendor,
 		Reference:   reference,
-		IpnUrl:      ipnUrl,
-		CallbackUrl: callbackUrl,
+		IpnURL:      ipnURL,
+		CallbackURL: callbackURL,
 		Description: description,
 		Note:        note,
 		Terminal:    terminal,

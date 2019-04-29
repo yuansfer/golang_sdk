@@ -11,7 +11,7 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-type yuansferApi struct {
+type yuansferAPI struct {
 	Host                []string      `yaml:"yuansfer_host" toml:"yuansfer_host"`
 	OnlinePayment       string        `yaml:"online_payment_url" toml:"online_payment_url"`
 	OnlineQuery         string        `yaml:"online_query_url" toml:"online_query_url"`
@@ -34,8 +34,7 @@ type yuansferToken struct {
 }
 
 const (
-	// CONFIG_FILE = "./yuansfer-api.yaml"
-	CONFIG_FILE = "./config.toml"
+	ConfigFile = "./config.toml"
 )
 
 func init() {
@@ -45,7 +44,7 @@ func init() {
 	)
 
 	flag.StringVar(&env, "env", "dev", "enviroment dev or product ")
-	flag.StringVar(&configFile, "conf", CONFIG_FILE, "config file name ")
+	flag.StringVar(&configFile, "conf", ConfigFile, "config file name ")
 
 	flag.Parse()
 

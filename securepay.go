@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 )
 
+//Use the securepay() API to pay an order.
 type Securepay struct {
 	MerchantNo   string `json:"merchantNo"`
 	StoreNo      string `json:"storeNo"`
@@ -12,8 +13,8 @@ type Securepay struct {
 	Amount       string `json:"amount"`
 	Vendor       string `json:"vendor"`
 	Reference    string `json:"reference"`
-	IpnUrl       string `json:"ipnUrl"`
-	CallbackUrl  string `json:"callbackUrl"`
+	IpnURL       string `json:"ipnUrl"`
+	CallbackURL  string `json:"callbackUrl"`
 	Description  string `json:"description"`
 	Note         string `json:"note"`
 	Terminal     string `json:"terminal"`
@@ -24,17 +25,22 @@ type Securepay struct {
 	GoodsInfo    string `json:"goodsInfo"`
 }
 
+//JSON encoded string of an array of items that the customer purchases
+//from the merchant. Special characters are not supported.
+// e.g.: [{"goods_name":"name1","quantity":"quantity1"},{"goods_name":"name2","quantity":"quantity2"}]
 type GoodsInfomation struct {
 	GoodsName string `json:"goods_name"`
 	Quantity  string `json:"quantity"`
 }
 
+//Send request to Yuansfer service
 func (s Securepay) PostToYuansfer() (string, error) {
 	values := generateValues(s, YuansferApi.Token.SecurepayToken)
-	securepayeUrl := yuansferHost + YuansferApi.OnlinePayment
-	return postToYuansfer(securepayeUrl, values)
+	securepayeURL := yuansferHost + YuansferApi.OnlinePayment
+	return postToYuansfer(securepayeURL, values)
 }
 
+//Change GoodsInfo to string.
 func (s *Securepay) Format(goodsInfos []GoodsInfomation) (err error) {
 	if nil == goodsInfos {
 		return

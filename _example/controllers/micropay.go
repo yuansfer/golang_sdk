@@ -26,7 +26,7 @@ func (this *MicropayController) Post() {
 	reference := this.Input().Get("reference")
 	description := this.Input().Get("description")
 	note := this.Input().Get("note")
-	ipnUrl := this.Input().Get("ipnUrl")
+	ipnURL := this.Input().Get("ipnUrl")
 	openid := this.Input().Get("openid")
 
 	if "" == reference {
@@ -40,7 +40,7 @@ func (this *MicropayController) Post() {
 		RmbAmount:   rmbAmt,
 		Vendor:      "wechatpay",
 		Reference:   reference,
-		IpnUrl:      ipnUrl,
+		IpnURL:      ipnURL,
 		Description: description,
 		Note:        note,
 		Openid:      openid,

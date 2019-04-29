@@ -1,5 +1,6 @@
 package yuansfer
 
+//To place an order in the Barcode/QR Code Payment.
 type InstorePay struct {
 	MerchantNo     string `json:"merchantNo"`
 	StoreNo        string `json:"storeNo"`
@@ -10,18 +11,21 @@ type InstorePay struct {
 	Vendor         string `json:"vendor"`
 }
 
+//Send request to Yuansfer service
 func (s InstorePay) PostToYuansfer() (string, error) {
 	values := generateValues(s, YuansferApi.Token.InstoreToken)
-	requestUrl := yuansferHost + YuansferApi.InstorePay
-	return postToYuansfer(requestUrl, values)
+	requestURL := yuansferHost + YuansferApi.InstorePay
+	return postToYuansfer(requestURL, values)
 }
 
+//Response from the Yuansfer service.
 type PayResponse struct {
 	Result      AddRet `json:"ret_code"`
 	RetMsg      string `json:"ret_msg"`
 	Transaction AddRet `json:"transaction"`
 }
 
+//Response from the Yuansfer service.
 type PayRet struct {
 	TransactionNo         string `json:"transactionNo"`
 	OriginalTransactionNo string `json:"originalTransactionNo"`

@@ -30,7 +30,7 @@ func (this *InstoreQrcodeController) Post() {
 	if "" == reference {
 		reference = fmt.Sprintf("seq_%d", time.Now().Unix())
 	}
-	ipnUrl := this.Input().Get("ipnUrl")
+	ipnURL := this.Input().Get("ipnUrl")
 
 	req := yuan.CreateQrcode{
 		MerchantNo: merchantNo,
@@ -38,7 +38,7 @@ func (this *InstoreQrcodeController) Post() {
 		Amount:     amt,
 		Vendor:     vendor,
 		Reference:  reference,
-		IpnUrl:     ipnUrl,
+		IpnURL:     ipnURL,
 		Currency:   "USD",
 	}
 
@@ -60,7 +60,7 @@ func (this *InstoreQrcodeController) Post() {
 	this.checkData("RectCode", resp.RectCode)
 	this.checkData("DeepLink", resp.DeepLink)
 	this.checkData("TransactionNo", resp.TransactionNo)
-	this.checkData("QrcodeUrl", resp.QrcodeUrl)
+	this.checkData("QrcodeUrl", resp.QrcodeURL)
 	this.checkData("TimeOut", resp.TimeOut)
 	this.checkData("Reference", resp.Reference)
 
