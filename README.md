@@ -4,7 +4,7 @@
 yuansfer SDK for golang language
 
 ## about
-Add the Configuration File named `yuansfer-api.yaml` into your project.
+Add the Configuration File named `config.toml` into your project. One can also use command-line flag "conf" to use configuration file with special name.
 ```
 yuansfer_host:
   # sandbox host url
@@ -29,3 +29,5 @@ token:
 # https://docs.yuansfer.com/en/#notice
 password_prefix: 'PASSWORD_PREFIX'
 ```
+
+To use command-line flag "env" to choose either Development Environment or Production Environment.
