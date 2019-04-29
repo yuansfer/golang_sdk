@@ -5,5 +5,6 @@ go:
   - 1.11
 install:
   - go get gopkg.in/yaml.v2
+  - go get github.com/BurntSushi/toml
 script:
   - go build github.com/yuansfer/golang_sdk
