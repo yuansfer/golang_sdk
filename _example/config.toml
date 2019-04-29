@@ -1,0 +1,27 @@
+#Configuration of Custom System
+
+yuansfer_host = [
+  # sandbox host url
+    "https://mapi.yuansfer.yunkeguan.com/",
+  # product host url
+    "https://mapi.yuansfer.com/"
+  ]
+
+online_payment_url = "appTransaction/v2/securepay"
+online_query_url = "appTransaction/v2/securepay-reference-query"
+online_refund_url = "appTransaction/v2/securepayRefund"
+instore_add_url = "app-instore/v2/add"
+instore_pay_url = "app-instore/v2/pay"
+instore_create_qrcode = "app-instore/v2/create-trans-qrcode"
+instore_query_url = "TODO"
+instore_refund_url = "app-instore/v2/refund"
+instore_reverse_url = "app-instore/v2/reverse"
+micropay_url = "micropay/v2/prepay"
+  # please get value of Password Prefix at https://docs.yuansfer.com/en/#notice
+password_prefix = "PASSWORD_PREFIX"
+
+[token]
+  # please get token from support@yuansfer.com
+  online_token = "ONLINE_TOKEN"
+  instore_token = "INSTORE_TOKEN"
+  micropay_token = "MICROPAY_TOKEN"

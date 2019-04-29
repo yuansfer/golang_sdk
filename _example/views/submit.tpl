@@ -45,6 +45,7 @@
                                 <option value="alipay">alipay</option>
                                 <option value="wechatpay">wechatpay</option>
                                 <option value="unionpay">unionpay</option>
+                                <option value="creditcard">credit card</option>
                             </select>
                         </td>
                     </tr>

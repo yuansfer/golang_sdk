@@ -13,8 +13,7 @@ import (
 
 var (
 	yuansferHost string
-
-	YuansferApi yuansferApi
+	YuansferApi  yuansferApi
 )
 
 func struct2Map(obj Yuansfer) map[string]string {
@@ -39,7 +38,7 @@ func generateValues(req Yuansfer, token string) url.Values {
 	data := struct2Map(req)
 	pre := map2Str(data) + md5Token(token)
 	values.Add("verifySign", md5Token(pre))
-	log.Println("verifySign:", md5Token(pre))
+
 	for key, value := range data {
 		if value != "" {
 			values.Add(key, value)

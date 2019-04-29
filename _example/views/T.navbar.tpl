@@ -1,10 +1,10 @@
 {{define "navbar"}}
 <!-- <a class="navbar-brand" href="/">Yuansfer</a> -->
-<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/">
-            <img alt="Brand" src="/static/img/7372_logo-invoice.jpg" height="20">
-		</a>
+            <img alt="Brand" src="http://oss.yuansfer.com/log_20190410.png?x-oss-process=image/resize,l_110" height="20">
+        </a>
         <div>
             <ul class="nav navbar-nav">
                 <li {{if .IsPay}}class="active" {{end}}><a href="/">Online Pay</a></li>

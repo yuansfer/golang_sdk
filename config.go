@@ -5,7 +5,9 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 
+	"github.com/BurntSushi/toml"
 	"gopkg.in/yaml.v2"
 )
 
@@ -32,28 +34,46 @@ type yuansferToken struct {
 }
 
 const (
-	CONFIG_FILE = "./yuansfer-api.yaml"
+	// CONFIG_FILE = "./yuansfer-api.yaml"
+	CONFIG_FILE = "./config.toml"
 )
 
 func init() {
-	var configFile string
+	var (
+		configFile string
+		env        string
+	)
 
-	env := flag.String("env", "dev", "enviroment dev or product ")
-	configFile = *flag.String("conf", CONFIG_FILE, "config file name ")
+	flag.StringVar(&env, "env", "dev", "enviroment dev or product ")
+	flag.StringVar(&configFile, "conf", CONFIG_FILE, "config file name ")
+
 	flag.Parse()
 
-	data, err := ioutil.ReadFile(configFile)
-	if err != nil {
-		log.Fatalf("read config file %s error:%s", configFile, err.Error())
-		os.Exit(21)
-	}
-	err = yaml.Unmarshal([]byte(data), &YuansferApi)
-	if err != nil {
-		log.Fatalf("Unmarshal config file %s error:%s", configFile, err.Error())
-		os.Exit(22)
+	fileType := strings.Split(configFile, ".")[2]
+
+	switch fileType {
+	case "yml", "yaml":
+		data, err := ioutil.ReadFile(configFile)
+		if err != nil {
+			log.Fatalf("read config file %s error:%s", configFile, err.Error())
+			os.Exit(21)
+		}
+		err = yaml.Unmarshal([]byte(data), &YuansferApi)
+		if err != nil {
+			log.Fatalf("Unmarshal config file %s error:%s", configFile, err.Error())
+			os.Exit(22)
+		}
+	case "toml":
+		if _, err := toml.DecodeFile(configFile, &YuansferApi); err != nil {
+			log.Fatal(err)
+			os.Exit(23)
+		}
+	default:
+		panic(31)
+
 	}
 
-	if "product" == *env {
+	if "product" == env {
 		yuansferHost = YuansferApi.Host[1]
 	} else {
 		yuansferHost = YuansferApi.Host[0]
