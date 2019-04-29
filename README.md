@@ -1,3 +1,5 @@
+![Yuansfer](http://oss.yuansfer.com/log_20190410.png?x-oss-process=image/resize,l_300)
+
 # golang_sdk [![Build Status](https://travis-ci.org/yuansfer/golang_sdk.svg?branch=master)](https://travis-ci.org/yuansfer/golang_sdk) [![GoDoc](https://godoc.org/github.com/yuansfer/golang_sdk?status.svg)](https://godoc.org/github.com/yuansfer/golang_sdk)
 yuansfer SDK for golang language
 
