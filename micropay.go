@@ -1,6 +1,6 @@
 package yuansfer
 
-//For WeChat Mini-Program Payment
+//Micropay is for WeChat Mini-Program Payment
 type Micropay struct {
 	MerchantNo   string `json:"merchantNo"`
 	StoreNo      string `json:"storeNo"`
@@ -20,9 +20,9 @@ type Micropay struct {
 	Openid       string `json:"openid"`
 }
 
-//Send request to Yuansfer service
+//PostToYuansfer is uesed to send request to the Yuansfer service
 func (s Micropay) PostToYuansfer() (string, error) {
-	values := generateValues(s, YuansferApi.Token.MicropayToken)
-	requestURL := yuansferHost + YuansferApi.Micropay
+	values := generateValues(s, YuansferAPI.Token.MicropayToken)
+	requestURL := yuansferHost + YuansferAPI.Micropay
 	return postToYuansfer(requestURL, values)
 }

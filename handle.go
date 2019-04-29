@@ -14,8 +14,8 @@ import (
 var (
 	//Development or Production of Yuansfer Service Address
 	yuansferHost string
-	//Configuration
-	YuansferApi yuansferAPI
+	//YuansferAPI is the configuration information
+	YuansferAPI yuansferAPI
 )
 
 func struct2Map(obj Yuansfer) map[string]string {
@@ -94,7 +94,7 @@ func values2Map(m url.Values) map[string]string {
 	return r
 }
 
-//Check the parameters from Yuansfer with the value of verifySign.
+//VerifySignNotify checks the parameters from Yuansfer with the value of verifySign.
 func VerifySignNotify(str string, token string) (m map[string]string, r bool) {
 	values, err := url.ParseQuery(str)
 	verifySign := values.Get("verifySign")

@@ -1,6 +1,6 @@
 package yuansfer
 
-// - Use the reverse() API to cancel a transaction
+//Reverse to cancel a transaction
 // when the PAY API call did NOT return a clear result.
 // - If the payment result of that trasaction is failure,
 // the Yuansfer system will cancel the transaction.
@@ -12,21 +12,21 @@ type Reverse struct {
 	TransactionNo string `json:"transactionNo"`
 }
 
-//Send request to Yuansfer service
+//PostToYuansfer is uesed to send request to the Yuansfer service
 func (r Reverse) PostToYuansfer() (string, error) {
-	values := generateValues(r, YuansferApi.Token.InstoreToken)
-	reverseURL := yuansferHost + YuansferApi.InstoreReverse
+	values := generateValues(r, YuansferAPI.Token.InstoreToken)
+	reverseURL := yuansferHost + YuansferAPI.InstoreReverse
 	return postToYuansfer(reverseURL, values)
 }
 
-//Response from the Yuansfer service.
+//QryReverse is the response from the Yuansfer service.
 type QryReverse struct {
 	RetCode string     `json:"ret_code"`
 	RetMsg  string     `json:"ret_msg"`
 	Result  ReverseRet `json:"refundTransaction"`
 }
 
-//Response from the Yuansfer service.
+//ReverseRet is the response from the Yuansfer service.
 type ReverseRet struct {
 	ExchangeRate          string `json:"exchangeRate"`
 	Currency              string `json:"currency"`

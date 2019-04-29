@@ -34,6 +34,7 @@ type yuansferToken struct {
 }
 
 const (
+	//ConfigFile is the default configuration file name.
 	ConfigFile = "./config.toml"
 )
 
@@ -51,30 +52,31 @@ func init() {
 	fileType := strings.Split(configFile, ".")[2]
 
 	switch fileType {
+	case "toml":
+		if _, err := toml.DecodeFile(configFile, &YuansferAPI); err != nil {
+			log.Fatal(err)
+			os.Exit(23)
+		}
 	case "yml", "yaml":
 		data, err := ioutil.ReadFile(configFile)
 		if err != nil {
 			log.Fatalf("read config file %s error:%s", configFile, err.Error())
 			os.Exit(21)
 		}
-		err = yaml.Unmarshal([]byte(data), &YuansferApi)
+		err = yaml.Unmarshal([]byte(data), &YuansferAPI)
 		if err != nil {
 			log.Fatalf("Unmarshal config file %s error:%s", configFile, err.Error())
 			os.Exit(22)
 		}
-	case "toml":
-		if _, err := toml.DecodeFile(configFile, &YuansferApi); err != nil {
-			log.Fatal(err)
-			os.Exit(23)
-		}
 	default:
-		panic(31)
+		log.Fatal("Unknown configuration file type.")
+		os.Exit(31)
 
 	}
 
 	if "product" == env {
-		yuansferHost = YuansferApi.Host[1]
+		yuansferHost = YuansferAPI.Host[1]
 	} else {
-		yuansferHost = YuansferApi.Host[0]
+		yuansferHost = YuansferAPI.Host[0]
 	}
 }

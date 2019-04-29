@@ -46,9 +46,9 @@ func (this *InstoreReverseController) Post() {
 	this.TplName = "inquire.tpl"
 
 	this.checkData("Reference", resp.TransactionNo)
-	this.checkData("YuansferId", resp.TransactionStatus)
+	this.checkData("YuansferID", resp.OriginalTransactionNo)
 	this.checkData("Amount", resp.Amount)
-	this.checkData("Status", "")
+	this.checkData("Status", resp.TransactionStatus)
 	this.checkData("RefundAmount", resp.RefundAmount)
 
 	return

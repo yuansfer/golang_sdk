@@ -1,6 +1,6 @@
 package yuansfer
 
-//To create transaction and get QR code
+//CreateQrcode is uesed to create transaction and get QR code
 //for customers to scan to pay
 type CreateQrcode struct {
 	MerchantNo   string `json:"merchantNo"`
@@ -14,14 +14,14 @@ type CreateQrcode struct {
 	IpnURL       string `json:"ipnUrl"`
 }
 
-//Send request to the Yuansfer service
+//PostToYuansfer is uesed to send request to the Yuansfer service
 func (s CreateQrcode) PostToYuansfer() (string, error) {
-	values := generateValues(s, YuansferApi.Token.InstoreToken)
-	requestURL := yuansferHost + YuansferApi.InstoreCreateQrcode
+	values := generateValues(s, YuansferAPI.Token.InstoreToken)
+	requestURL := yuansferHost + YuansferAPI.InstoreCreateQrcode
 	return postToYuansfer(requestURL, values)
 }
 
-//Response from the Yuansfer service
+//QrcodeRet is the Response from the Yuansfer service
 type QrcodeRet struct {
 	Reference     string `json:"reference"`
 	RectCode      string `json:"ret_code"`

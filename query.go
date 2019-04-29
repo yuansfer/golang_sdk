@@ -1,6 +1,6 @@
 package yuansfer
 
-// To get transaction details
+// Query To get transaction details
 // by ID of the transaction in the merchant’s system.
 type Query struct {
 	MerchantNo  string `json:"merchantNo"`
@@ -19,31 +19,30 @@ type Query struct {
 	Version     string `json:"version"`
 }
 
-//Send request to Yuansfer service
+//PostToYuansfer is uesed to send request to the Yuansfer service
 func (q Query) PostToYuansfer() (string, error) {
-	values := generateValues(q, YuansferApi.Token.SecurepayToken)
-	queryURL := yuansferHost + YuansferApi.OnlineQuery
+	values := generateValues(q, YuansferAPI.Token.SecurepayToken)
+	queryURL := yuansferHost + YuansferAPI.OnlineQuery
 	return postToYuansfer(queryURL, values)
 }
 
-//Response from the Yuansfer service.
+//QryResponse is the response from the Yuansfer service.
 type QryResponse struct {
 	Result Ret    `json:"result"`
 	RetMsg string `json:"ret_msg"`
 }
 
-//Response from the Yuansfer service.
+//Ret is the response from the Yuansfer service.
 type Ret struct {
 	Reference  string       `json:"reference"`
-	YuansferId string       `json:"yuansferId"`
+	YuansferID string       `json:"yuansferId"`
 	Amount     string       `json:"amount"`
 	Status     string       `json:"status"`
 	RefundInfo []refundInfo `json:"refundInfo"`
 	Currency   string       `json:"currency"`
 }
 
-//Response from the Yuansfer service.
 type refundInfo struct {
-	RefundYuansferId string `json:"refundYuansferId"`
+	RefundYuansferID string `json:"refundYuansferId"`
 	RefundAmount     string `json:"refundAmount"`
 }

@@ -55,8 +55,8 @@ func (this *RefundController) Post() {
 	resp := qr.Result
 
 	this.checkData("Reference", resp.Reference)
-	this.checkData("YuansferId", resp.OldTransactionId)
-	this.checkData("Amount", resp.RefundTransactionId)
+	this.checkData("YuansferId", resp.OldTransactionID)
+	this.checkData("RefundTransactionId", resp.RefundTransactionID)
 	this.checkData("Status", resp.Status)
 
 	this.Data["IsRefund"] = true

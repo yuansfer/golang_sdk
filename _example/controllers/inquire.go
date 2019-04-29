@@ -45,7 +45,7 @@ func (this *InquireController) Post() {
 	this.TplName = "inquire.tpl"
 
 	this.checkData("Reference", resp.Reference)
-	this.checkData("YuansferId", resp.YuansferId)
+	this.checkData("YuansferId", resp.YuansferID)
 	this.checkData("Amount", resp.Amount)
 	this.checkData("Status", resp.Status)
 	this.checkData("RefundInfo", resp.RefundInfo)
