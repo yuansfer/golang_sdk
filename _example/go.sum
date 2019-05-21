@@ -39,6 +39,9 @@ github.com/yuansfer/golang_sdk v0.0.0-20190305150004-15c472ee0f8c h1:VHnR/KGPkuQ
 github.com/yuansfer/golang_sdk v0.0.0-20190305150004-15c472ee0f8c/go.mod h1:LTsWJxwe0iIqt6ybmGkEmaryXzTOCC47iUNvXsGdDxo=
 github.com/yuansfer/golang_sdk v0.0.0-20190404070628-e73475a63157 h1:We3Ls6DzWaxpn5O707eVW4zkJkuOWPsunWrC8aeQbAE=
 github.com/yuansfer/golang_sdk v0.0.0-20190404070628-e73475a63157/go.mod h1:8f3jDk/nb1+lFuMRfCW1q7kd3/OUgpBonlsX1McEQG0=
+golang.org/x/crypto v0.0.0-20181127143415-eb0de9b17e85 h1:et7+NAX3lLIk5qUCTA9QelBjGE/NkhzYw/mhnr0s7nI=
+golang.org/x/crypto v0.0.0-20181127143415-eb0de9b17e85/go.mod h1:6SG95UA2DQfeDnfUPMdvaQW0Q7yPrPDi9nlGo2tz2b4=
+golang.org/x/net v0.0.0-20181114220301-adae6a3d119a/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
 gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
