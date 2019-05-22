@@ -113,6 +113,25 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-lg-4 control-label">Credit Type：</label>
+                <div class="col-lg-6">
+                    <tr>
+                        <td>
+                            <input type="hidden" class="form-control" name="CreditType" value="creditType">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select name="creditType">
+                                <option value="normal">normal</option>
+                                <option value="authorize">authorize</option>
+                                <option value="recurring">recurring</option>
+                            </select>
+                        </td>
+                    </tr>
+                </div>
+            </div>
+            <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
                     <a href="/" target="_blank">
                         <button type="submit" class="btn btn-default" onclick="return checkInput();">提交</button>

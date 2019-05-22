@@ -29,6 +29,7 @@ func (this *HomeController) Post() {
 	terminal := this.Input().Get("terminal")
 	ipnURL := this.Input().Get("ipnUrl")
 	callbackURL := this.Input().Get("callbackUrl")
+	creditType := this.Input().Get("creditType")
 
 	if "" == terminal {
 		terminal = "ONLINE"
@@ -51,6 +52,7 @@ func (this *HomeController) Post() {
 		Note:        note,
 		Terminal:    terminal,
 		Timeout:     "15",
+		CreditType:  creditType,
 	}
 
 	goods := this.Input().Get("goods")
