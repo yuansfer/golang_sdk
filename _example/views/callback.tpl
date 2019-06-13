@@ -19,15 +19,21 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-lg-4 control-label">交易方式：</label>
+                <label class="col-lg-4 control-label">交易结果：</label>
                 <div class="col-lg-4">
-                    {{.Vendor}}
+                    {{.Status}}
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-lg-4 control-label">流水号：</label>
                 <div class="col-lg-4">
                     {{.Reference}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label">Yuansfer流水号：</label>
+                <div class="col-lg-4">
+                    {{.YuansferID}}
                 </div>
             </div>
             <div class="form-group">

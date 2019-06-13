@@ -24,6 +24,9 @@ type Securepay struct {
 	StoreAdminNo string `json:"storeAdminNo"`
 	GoodsInfo    string `json:"goodsInfo"`
 	CreditType   string `json:"creditType"`
+	PaymentCount string `json:"paymentCount"`
+	Frequency    string `json:"frequency"`
+	CustomerNo   string `json:"customerNo"`
 }
 
 //GoodsInfomation is a JSON encoded string of an array of items that the customer purchases

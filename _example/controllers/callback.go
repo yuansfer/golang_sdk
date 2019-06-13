@@ -2,6 +2,8 @@ package controllers
 
 import (
 	"io"
+
+	yuan "github.com/yuansfer/golang_sdk"
 )
 
 type CallbackController struct {
@@ -9,23 +11,35 @@ type CallbackController struct {
 }
 
 func (this *CallbackController) Get() {
-	reference := this.Input().Get("reference")
-	if "" == reference {
-		this.Redirect("/", 302)
-	} else {
-		this.Data["IsPay"] = true
-		this.TplName = "callback.tpl"
+	token := yuan.YuansferAPI.Token.SecurepayToken
+	request := this.Input()
+	_, ret := yuan.VerifySignNotify(request, token)
 
-		this.checkData("Amt", this.Input().Get("amount"))
-		this.checkData("Vendor", this.Input().Get("vendor"))
-		this.checkData("RmbAmt", this.Input().Get("rmbAmount"))
-		this.checkData("Note", this.Input().Get("note"))
-		this.checkData("Reference", this.Input().Get("reference"))
-
+	if false == ret {
+		this.Ctx.WriteString("verifySign Rejected")
 	}
+
+	this.Data["IsPay"] = true
+	this.TplName = "callback.tpl"
+
+	this.checkData("Amt", request.Get("amount"))
+	this.checkData("Status", request.Get("status"))
+	this.checkData("RmbAmt", request.Get("rmbAmount"))
+	this.checkData("Note", request.Get("note"))
+	this.checkData("YuansferID", request.Get("yuansferId"))
+	this.checkData("Reference", request.Get("reference"))
 }
 
 func (this *CallbackController) Post() {
-	str := "success"
-	io.WriteString(this.Ctx.ResponseWriter, str)
+	token := yuan.YuansferAPI.Token.SecurepayToken
+	request := this.Input()
+	_, ret := yuan.VerifySignNotify(request, token)
+
+	response := ""
+	if ret == true {
+		response = "success"
+	} else {
+		response = "failed"
+	}
+	io.WriteString(this.Ctx.ResponseWriter, response)
 }

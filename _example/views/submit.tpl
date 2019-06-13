@@ -132,6 +132,18 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-lg-4 control-label">Payment Count：</label>
+                <div class="col-lg-6">
+                    <input id="paymentCount" class="form-control" name="paymentCount" placeholder="Payment Count">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label">Frequency：</label>
+                <div class="col-lg-6">
+                    <input id="frequency" class="form-control" name="frequency" placeholder="Frequency">
+                </div>
+            </div>
+            <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
                     <a href="/" target="_blank">
                         <button type="submit" class="btn btn-default" onclick="return checkInput();">提交</button>

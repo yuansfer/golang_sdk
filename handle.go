@@ -4,7 +4,6 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -95,19 +94,15 @@ func values2Map(m url.Values) map[string]string {
 }
 
 //VerifySignNotify checks the parameters from Yuansfer with the value of verifySign.
-func VerifySignNotify(str string, token string) (m map[string]string, r bool) {
-	values, err := url.ParseQuery(str)
+func VerifySignNotify(values url.Values, token string) (m map[string]string, r bool) {
 	verifySign := values.Get("verifySign")
-
 	m = values2Map(values)
-	if err != nil {
-		log.Println("parse error:%v", err)
-	}
-
 	pre := map2Str(m) + md5Token(token)
 	vs := md5Token(pre)
+
 	if vs == verifySign {
 		return m, true
 	}
+
 	return m, false
 }

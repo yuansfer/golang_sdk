@@ -30,6 +30,9 @@ func (this *HomeController) Post() {
 	ipnURL := this.Input().Get("ipnUrl")
 	callbackURL := this.Input().Get("callbackUrl")
 	creditType := this.Input().Get("creditType")
+	paymentCount := this.Input().Get("paymentCount")
+	frequency := this.Input().Get("frequency")
+	customerNo := ""
 
 	if "" == terminal {
 		terminal = "ONLINE"
@@ -39,20 +42,23 @@ func (this *HomeController) Post() {
 	}
 
 	req := &yuan.Securepay{
-		MerchantNo:  merchantNo,
-		StoreNo:     storeNo,
-		Currency:    "USD",
-		Amount:      amt,
-		RmbAmount:   rmbAmt,
-		Vendor:      vendor,
-		Reference:   reference,
-		IpnURL:      ipnURL,
-		CallbackURL: callbackURL,
-		Description: description,
-		Note:        note,
-		Terminal:    terminal,
-		Timeout:     "15",
-		CreditType:  creditType,
+		MerchantNo:   merchantNo,
+		StoreNo:      storeNo,
+		Currency:     "USD",
+		Amount:       amt,
+		RmbAmount:    rmbAmt,
+		Vendor:       vendor,
+		Reference:    reference,
+		IpnURL:       ipnURL,
+		CallbackURL:  callbackURL,
+		Description:  description,
+		Note:         note,
+		Terminal:     terminal,
+		Timeout:      "15",
+		CreditType:   creditType,
+		PaymentCount: paymentCount,
+		Frequency:    frequency,
+		CustomerNo:   customerNo,
 	}
 
 	goods := this.Input().Get("goods")
