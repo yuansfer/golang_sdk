@@ -11,6 +11,7 @@ type Reverse struct {
 	StoreNo       string `json:"storeNo"`
 	TransactionNo string `json:"transactionNo"`
 	VoidAmount    string `json:"voidAmount"`
+	Reference     string `json:"reference"`
 }
 
 //PostToYuansfer is uesed to send request to the Yuansfer service
@@ -42,4 +43,5 @@ type ReverseRet struct {
 	TransactionNo         string `json:"transactionNo"`
 	TransactionStatus     string `json:"transactionStatus"`
 	TransactionType       string `json:"transactionType"`
+	Reference             string `json:"reference"`
 }
