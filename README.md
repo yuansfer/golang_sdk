@@ -6,7 +6,7 @@ yuansfer SDK for golang language
 
 ## about
 - Use the command-line flag `env` to select a Development or Production environment.
-- Add a configuration file called `config.toml` into your project. You can also use the command-line flag `conf` to use a configuration file with a special name.
+- Add a configuration file called `config.toml` into your project. You can use `-c` option to specify another configuration file.
 
 ```
 yuansfer_host = [

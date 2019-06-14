@@ -10,6 +10,7 @@ type Reverse struct {
 	MerchantNo    string `json:"merchantNo"`
 	StoreNo       string `json:"storeNo"`
 	TransactionNo string `json:"transactionNo"`
+	VoidAmount    string `json:"voidAmount"`
 }
 
 //PostToYuansfer is uesed to send request to the Yuansfer service
