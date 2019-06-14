@@ -13,10 +13,12 @@ type CallbackController struct {
 func (this *CallbackController) Get() {
 	token := yuan.YuansferAPI.Token.SecurepayToken
 	request := this.Input()
-	_, ret := yuan.VerifySignNotify(request, token)
+	if verifySign := request.Get("verifySign"); "" != verifySign {
+		_, ret := yuan.VerifySignNotify(request, token)
 
-	if false == ret {
-		this.Ctx.WriteString("verifySign Rejected")
+		if false == ret {
+			this.Ctx.WriteString("verifySign Rejected")
+		}
 	}
 
 	this.Data["IsPay"] = true
