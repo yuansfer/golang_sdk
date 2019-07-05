@@ -32,8 +32,6 @@ func (this *HomeController) Post() {
 	creditType := this.Input().Get("creditType")
 	paymentCount := this.Input().Get("paymentCount")
 	frequency := this.Input().Get("frequency")
-	addr := this.Input().Get("addr")
-	zip := this.Input().Get("zip")
 	customerNo := ""
 
 	if "" == terminal {
@@ -61,8 +59,6 @@ func (this *HomeController) Post() {
 		PaymentCount: paymentCount,
 		Frequency:    frequency,
 		CustomerNo:   customerNo,
-		Address:      addr,
-		Zip:          zip,
 	}
 
 	goods := this.Input().Get("goods")
