@@ -96,13 +96,10 @@ func values2Map(m url.Values) map[string]string {
 //VerifySignNotify checks the parameters from Yuansfer with the value of verifySign.
 func VerifySignNotify(values url.Values, token string) (m map[string]string, r bool) {
 	verifySign := values.Get("verifySign")
+
 	m = values2Map(values)
 	pre := map2Str(m) + md5Token(token)
 	vs := md5Token(pre)
 
-	if vs == verifySign {
-		return m, true
-	}
-
-	return m, false
+	return m, vs == verifySign
 }
