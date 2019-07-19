@@ -10,6 +10,13 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
+var (
+	//Development or Production of Yuansfer Service Address
+	yuansferHost string
+	//YuansferAPI is the configuration information
+	YuansferAPI yuansferAPI
+)
+
 type yuansferAPI struct {
 	Host                []string      `yaml:"yuansfer_host" toml:"yuansfer_host"`
 	OnlinePayment       string        `yaml:"online_payment_url" toml:"online_payment_url"`
@@ -69,9 +76,10 @@ func init() {
 		log.Fatal("Unknown configuration file type.")
 	}
 
-	if "product" == env {
-		yuansferHost = YuansferAPI.Host[1]
-	} else {
-		yuansferHost = YuansferAPI.Host[0]
+	hosts := map[string]string{
+		"dev":     YuansferAPI.Host[0],
+		"product": YuansferAPI.Host[1],
 	}
+
+	yuansferHost = hosts[env]
 }

@@ -10,13 +10,6 @@ import (
 	"sort"
 )
 
-var (
-	//Development or Production of Yuansfer Service Address
-	yuansferHost string
-	//YuansferAPI is the configuration information
-	YuansferAPI yuansferAPI
-)
-
 func struct2Map(obj Yuansfer) map[string]string {
 	t := reflect.TypeOf(obj)
 	v := reflect.ValueOf(obj)
