@@ -20,7 +20,7 @@ func (s InstorePay) PostToYuansfer() (string, error) {
 
 //PayResponse is the response from the Yuansfer service.
 type PayResponse struct {
-	Result      AddRet `json:"ret_code"`
+	Result      string `json:"ret_code"`
 	RetMsg      string `json:"ret_msg"`
 	Transaction AddRet `json:"transaction"`
 }
