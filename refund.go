@@ -12,6 +12,7 @@ type Refund struct {
 	Currency         string `json:"currency"`
 	VerifySign       string `json:"verifySign"`
 	Version          string `json:"version"`
+	TransactionNo    string `json:"transactionNo"`
 }
 
 //PostToYuansfer is uesed to send request to the Yuansfer service
