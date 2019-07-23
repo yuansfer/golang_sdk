@@ -1,6 +1,7 @@
 package yuansfer
 
 import (
+	"bytes"
 	"crypto/md5"
 	"encoding/hex"
 	"io/ioutil"
