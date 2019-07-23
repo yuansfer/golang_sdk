@@ -50,7 +50,7 @@ func init() {
 		env        string
 	)
 
-	flag.StringVar(&env, "env", "dev", "enviroment dev or product ")
+	flag.StringVar(&env, "env", "sandbox", "enviroment sandbox or product ")
 	flag.StringVar(&configFile, "conf", ConfigFile, "config file name ")
 
 	flag.Parse()
@@ -77,7 +77,7 @@ func init() {
 	}
 
 	hosts := map[string]string{
-		"dev":     YuansferAPI.Host[0],
+		"sandbox": YuansferAPI.Host[0],
 		"product": YuansferAPI.Host[1],
 	}
 

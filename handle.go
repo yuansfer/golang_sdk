@@ -49,13 +49,18 @@ func map2Str(m map[string]string) string {
 			keys = append(keys, k)
 		}
 	}
+
 	sort.Strings(keys)
-	dec := ""
+
+	var buf bytes.Buffer
 	for _, key := range keys {
-		dec += key + "=" + m[key] + "&"
+		buf.WriteString(key)
+		buf.WriteString("=")
+		buf.WriteString(m[key])
+		buf.WriteString("&")
 	}
 
-	return dec
+	return buf.String()
 }
 
 func postToYuansfer(addr string, values url.Values) (string, error) {
