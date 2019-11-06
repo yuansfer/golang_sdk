@@ -6,6 +6,7 @@ import (
 
 //Securepay contains the parameters of online payment request.
 type Securepay struct {
+	GroupNo      string `json:"merGroupNo"`
 	MerchantNo   string `json:"merchantNo"`
 	StoreNo      string `json:"storeNo"`
 	VerifySign   string `json:"verifySign"`
