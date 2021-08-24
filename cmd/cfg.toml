@@ -1,0 +1,7 @@
+
+
+[credentials]
+store_no = "3xxxxx"
+merchant_no = "2xxxxx"
+environment = "sandbox" # or production
+token = "obtain your developer token from yuansfer portal"

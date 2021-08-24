@@ -4,11 +4,12 @@ import (
 	"bytes"
 	"crypto/md5"
 	"encoding/hex"
-	"io/ioutil"
-	"net/http"
+	"encoding/json"
+	"log"
 	"net/url"
 	"reflect"
 	"sort"
+	"strings"
 )
 
 func struct2Map(obj Yuansfer) map[string]string {
@@ -16,31 +17,26 @@ func struct2Map(obj Yuansfer) map[string]string {
 	v := reflect.ValueOf(obj)
 	var data = make(map[string]string)
 	for i := 0; i < t.NumField(); i++ {
-		data[t.Field(i).Tag.Get("json")] = v.Field(i).String()
+		data[strings.TrimSuffix(
+			t.Field(i).Tag.Get("json"),
+			",omitempty")] = v.Field(i).String()
 	}
 	return data
 }
 
 func md5Token(data string) string {
-	md5 := md5.New()
-	md5.Write([]byte(data))
-	md5Data := md5.Sum([]byte(""))
+	hash := md5.New()
+	hash.Write([]byte(data))
+	md5Data := hash.Sum([]byte(""))
 	return hex.EncodeToString(md5Data)
 }
 
-func generateValues(req Yuansfer, token string) url.Values {
-	values := url.Values{}
+func getSignature(req Yuansfer) string {
+	//req.LoadCredentials()
 	data := struct2Map(req)
-	pre := map2Str(data) + md5Token(token)
-	values.Add("verifySign", md5Token(pre))
-
-	for key, value := range data {
-		if value != "" {
-			values.Add(key, value)
-		}
-	}
-
-	return values
+	pre := map2Str(data) + md5Token(Token)
+	log.Println(pre)
+	return md5Token(pre)
 }
 
 func map2Str(m map[string]string) string {
@@ -64,23 +60,18 @@ func map2Str(m map[string]string) string {
 	return buf.String()
 }
 
-func postToYuansfer(addr string, values url.Values) (string, error) {
+func postToYuansfer(uri string, req Yuansfer) ([]byte, error) {
 	var (
-		err  error
-		resp *http.Response
+		buf []byte
+		err error
 	)
-	resp, err = http.PostForm(addr, values)
-	if err != nil {
-		return "", err
+	buf, err = json.Marshal(req)
+	if nil != err {
+		return nil, err
 	}
-
-	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return "", err
-	}
-
-	return string(body), err
+	c := NewHttpClient(uri, buf)
+	err = c.Request()
+	return c.Body, err
 }
 
 func values2Map(m url.Values) map[string]string {

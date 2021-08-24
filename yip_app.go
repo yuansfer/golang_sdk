@@ -1,7 +1,8 @@
 package yuansfer
 
-//Micropay is for WeChat Mini-Program Payment
-type Micropay struct {
+//Prepay does the mobile payment for the In-APP and/or WeChat Mini program solutions.
+type Prepay struct {
+	GroupNo      string `json:"merGroupNo,omitempty"`
 	MerchantNo   string `json:"merchantNo"`
 	StoreNo      string `json:"storeNo"`
 	VerifySign   string `json:"verifySign"`
@@ -20,9 +21,15 @@ type Micropay struct {
 	Openid       string `json:"openid"`
 }
 
-//PostToYuansfer is uesed to send request to the Yuansfer service
-func (s Micropay) PostToYuansfer() (string, error) {
-	values := generateValues(s, YuansferAPI.Token.MicropayToken)
-	requestURL := yuansferHost + YuansferAPI.Micropay
-	return postToYuansfer(requestURL, values)
+//PostToYuansfer is for api call to the Yuansfer gateway
+func (p Prepay) PostToYuansfer() ([]byte, error) {
+	(&p).LoadCredentials()
+	p.VerifySign = getSignature(p)
+	return postToYuansfer(URIYipApp, p)
+}
+
+func (p *Prepay) LoadCredentials() {
+	p.GroupNo = cfg.Credential.PartnerNo
+	p.MerchantNo = cfg.Credential.MerchantNo
+	p.StoreNo = cfg.Credential.StoreNo
 }
