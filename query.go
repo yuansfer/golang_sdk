@@ -1,29 +1,27 @@
 package yuansfer
 
-// Query To get transaction details
+// Query obtain transaction details
 // by ID of the transaction in the merchant’s system.
 type Query struct {
-	MerchantNo  string `json:"merchantNo"`
-	StoreNo     string `json:"storeNo"`
-	VerifySign  string `json:"verifySign"`
-	Currency    string `json:"currency"`
-	Amount      string `json:"amount"`
-	Vendor      string `json:"vendor"`
-	Reference   string `json:"reference"`
-	IpnURL      string `json:"ipnUrl"`
-	CallbackURL string `json:"callbackUrl"`
-	Description string `json:"description"`
-	Note        string `json:"note"`
-	Terminal    string `json:"terminal"`
-	Timeout     string `json:"timeout"`
-	Version     string `json:"version"`
+	GroupNo       string `json:"merGroupNo,omitempty"`
+	MerchantNo    string `json:"merchantNo"`
+	StoreNo       string `json:"storeNo"`
+	VerifySign    string `json:"verifySign"`
+	Reference     string `json:"reference,omitempty"`
+	TransactionNo string `json:"transactionNo,omitempty"`
 }
 
-//PostToYuansfer is uesed to send request to the Yuansfer service
-func (q Query) PostToYuansfer() (string, error) {
-	values := generateValues(q, YuansferAPI.Token.SecurepayToken)
-	queryURL := yuansferHost + YuansferAPI.OnlineQuery
-	return postToYuansfer(queryURL, values)
+//PostToYuansfer is for api call to the Yuansfer gateway
+func (q Query) PostToYuansfer() ([]byte, error) {
+	(&q).LoadCredentials()
+	q.VerifySign = getSignature(q)
+	return postToYuansfer(URIRetrieve, q)
+}
+
+func (q *Query) LoadCredentials() {
+	q.GroupNo = cfg.Credential.PartnerNo
+	q.MerchantNo = cfg.Credential.MerchantNo
+	q.StoreNo = cfg.Credential.StoreNo
 }
 
 //QryResponse is the response from the Yuansfer service.

@@ -1,7 +1,8 @@
 package yuansfer
 
-//InstorePay for placeing an order in the Barcode/QR Code Payment.
-type InstorePay struct {
+//InStorePay to complete the QRC payment added previously.
+type InStorePay struct {
+	GroupNo        string `json:"merGroupNo,omitempty"`
 	MerchantNo     string `json:"merchantNo"`
 	StoreNo        string `json:"storeNo"`
 	VerifySign     string `json:"verifySign"`
@@ -11,11 +12,17 @@ type InstorePay struct {
 	Vendor         string `json:"vendor"`
 }
 
-//PostToYuansfer is uesed to send request to the Yuansfer service
-func (s InstorePay) PostToYuansfer() (string, error) {
-	values := generateValues(s, YuansferAPI.Token.InstoreToken)
-	requestURL := yuansferHost + YuansferAPI.InstorePay
-	return postToYuansfer(requestURL, values)
+//PostToYuansfer is for api call to the Yuansfer gateway
+func (s InStorePay) PostToYuansfer() ([]byte, error) {
+	(&s).LoadCredentials()
+	s.VerifySign = getSignature(s)
+	return postToYuansfer(URIPosPay, s)
+}
+
+func (s *InStorePay) LoadCredentials() {
+	s.GroupNo = cfg.Credential.PartnerNo
+	s.MerchantNo = cfg.Credential.MerchantNo
+	s.StoreNo = cfg.Credential.StoreNo
 }
 
 //PayResponse is the response from the Yuansfer service.

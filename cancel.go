@@ -1,24 +1,26 @@
 package yuansfer
 
-//Reverse to cancel a transaction
-// when the PAY API call did NOT return a clear result.
-// - If the payment result of that trasaction is failure,
-// the Yuansfer system will cancel the transaction.
-// - If the payment result of that transaction is success,
-// the Yuansfer system will refund the amount of the transaction.
-type Reverse struct {
+//Cancel to cancel/reverse a transaction
+type Cancel struct {
+	GroupNo       string `json:"merGroupNo,omitempty"`
 	MerchantNo    string `json:"merchantNo"`
 	StoreNo       string `json:"storeNo"`
-	TransactionNo string `json:"transactionNo"`
-	VoidAmount    string `json:"voidAmount"`
-	Reference     string `json:"reference"`
+	VerifySign    string `json:"verifySign"`
+	Reference     string `json:"reference,omitempty"`
+	TransactionNo string `json:"transactionNo,omitempty"`
 }
 
-//PostToYuansfer is uesed to send request to the Yuansfer service
-func (r Reverse) PostToYuansfer() (string, error) {
-	values := generateValues(r, YuansferAPI.Token.InstoreToken)
-	reverseURL := yuansferHost + YuansferAPI.InstoreReverse
-	return postToYuansfer(reverseURL, values)
+//PostToYuansfer is for api call to the Yuansfer service
+func (c Cancel) PostToYuansfer() ([]byte, error) {
+	(&c).LoadCredentials()
+	c.VerifySign = getSignature(c)
+	return postToYuansfer(URICancel, c)
+}
+
+func (c *Cancel) LoadCredentials() {
+	c.GroupNo = cfg.Credential.PartnerNo
+	c.MerchantNo = cfg.Credential.MerchantNo
+	c.StoreNo = cfg.Credential.StoreNo
 }
 
 //QryReverse is the response from the Yuansfer service.

@@ -5,36 +5,60 @@
 yuansfer SDK for golang 
 
 ## about
-- Use `-env` option to select a Development or Production environment.
-- Add a configuration file called `config.toml` into your project. You can use `-conf` option to specify another configuration file.
+- Use `yuansfer.LoadConfiguration(y yuansfer.Configuration) function to setup credentials`
 
 ```
-yuansfer_host = [
-  # sandbox host url
-    "https://mapi.yuansfer.yunkeguan.com/",
-  # product host url
-    "https://mapi.yuansfer.com/"
-  ]
-online_payment_url = "appTransaction/v2/securepay"
-online_query_url = "appTransaction/v2/securepay-reference-query"
-online_refund_url = "appTransaction/v2/securepayRefund"
-instore_add_url = "app-instore/v2/add"
-instore_pay_url = "app-instore/v2/pay"
-instore_create_qrcode = "app-instore/v2/create-trans-qrcode"
-instore_query_url = "TODO"
-instore_refund_url = "app-instore/v2/refund"
-instore_reverse_url = "app-instore/v2/reverse"
-micropay_url = "micropay/v2/prepay"
-password_prefix = "PASSWORD_PREFIX"
-
-[token]
-  online_token = "ONLINE_TOKEN"
-  instore_token = "INSTORE_TOKEN"
-  micropay_token = "MICROPAY_TOKEN"
+[credentials]
+store_no = "3xxxxx"
+merchant_no = "2xxxxx"
+environment = "sandbox" # production
+token = "obtain your developer token from yuansfer portal"
 ```
 
-- See _example/ for examples of the APIs.
+---
 
+```
+import "github.com/yuansfer/golang_sdk"
+```
+
+---
+
+```go
+package main
+
+import "fmt"
+import "time"
+
+import "github.com/yuansfer/golang_sdk"
+
+func securePay() {
+	req := &yuansfer.SecurePay{
+		Currency:       "USD",
+		SettleCurrency: "USD",
+		Amount:         "1.99",
+		Vendor:         "alipay",
+		Reference:      fmt.Sprintf("%s-%d", "alipay", time.Now().Unix()),
+		Terminal:       "ONLINE",
+		IpnURL:         "https://t.ldf.fit/callback",
+		CallbackURL:    "https://t.ldf.fit/callback",
+		Note:           "123",
+		Description:    "456",
+		//Timeout:        "",
+		//GoodsInfo:      "",
+		//CreditType:     "",
+		//CustomerNo:     "",
+		//OSType:         "",
+	}
+
+	buf, err := req.PostToYuansfer()
+	if nil != err {
+		fmt.Println("failed: ", err.Error())
+	} else {
+		fmt.Println("response ==> ", string(buf))
+	}
+}
+
+```
 ## contact us
 - mail: support@yuansfer.com
-- API documention: [https://docs.yuansfer.com/en/](https://docs.yuansfer.com/en/)
+- API documentation: [https://docs.yuansfer.com/](https://docs.yuansfer.com/)
