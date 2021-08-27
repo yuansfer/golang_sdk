@@ -28,6 +28,23 @@ type SecurePay struct {
 	OSType         string `json:"osType,omitempty"` // IOS, ANDROID available
 }
 
+//AddResponse is the Response from the Yuansfer service.
+type SecurePayResponse struct {
+	Result   string       `json:"ret_code"`
+	RetMsg   string       `json:"ret_msg"`
+	Response SecurePayRet `json:"result"`
+}
+
+//AddRet is the Response from the Yuansfer service.
+type SecurePayRet struct {
+	Amount         string `json:"amount"`
+	Currency       string `json:"currency"`
+	TransactionNo  string `json:"transactionNo"`
+	Reference      string `json:"reference"`
+	CashierURL     string `json:"cashierUrl"`
+	SettleCurrency string `json:"settleCurrency"`
+}
+
 //GoodsInformation is a JSON encoded string of an array of items that the customer purchases
 //from the merchant. Special characters are not supported.
 // e.g.: [{"goods_name":"name1","quantity":"quantity1"},{"goods_name":"name2","quantity":"quantity2"}]
