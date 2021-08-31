@@ -60,6 +60,13 @@ func (s SecurePay) PostToYuansfer() ([]byte, error) {
 	return postToYuansfer(URISecurePay, s)
 }
 
+func (s *SecurePay) SetCredidentails(group, merchant, store, token string) {
+	s.GroupNo = group
+	s.MerchantNo = merchant
+	s.StoreNo = store
+	s.VerifySign = calculateSignature(*s, token)
+}
+
 //Format changes GoodsInfo to string.
 func (s *SecurePay) Format(goodsInfos []GoodsInformation) (err error) {
 	if nil == goodsInfos {

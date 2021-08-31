@@ -39,6 +39,12 @@ func getSignature(req Yuansfer) string {
 	return md5Token(pre)
 }
 
+func calculateSignature(req Yuansfer, token string) string {
+	data := struct2Map(req)
+	pre := map2Str(data) + md5Token(token)
+	return md5Token(pre)
+}
+
 func map2Str(m map[string]string) string {
 	var keys []string
 	for k := range m {
